@@ -1,0 +1,15 @@
+# Folders to exclude from the Docker image
+venv/
+.venv/
+__pycache__/
+staticfiles/
+media/
+.git/
+
+# Files to exclude
+db.sqlite3
+.env
+.vscode/
+.idea/
+*.log
+*.ctl

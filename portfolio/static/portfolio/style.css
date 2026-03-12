@@ -1,0 +1,192 @@
+/* --- 1. THE FOUNDATION --- */
+:root {
+    --bg-dark: #0a0a0a;
+    --card-bg: #111111;
+    --accent: #00f2ff;
+    --text-primary: #ffffff !important; /* Force Pure White */
+    --text-muted: #d1d1d1 !important;    /* Force Light Grey (almost white) */
+    --border-color: #262626;
+}
+
+/* --- 2. FORCING READABILITY --- */
+body .text-muted, 
+body .post-excerpt, 
+body .post-meta,
+body p.text-muted {
+    color: var(--text-muted) !important;
+    opacity: 1 !important; /* Some Bootstrap versions add transparency */
+}
+
+body h1, body h2, body h3, body .text-white {
+    color: var(--text-primary) !important;
+}
+
+/* Force the Card to be visible */
+.post-preview-card {
+    background-color: var(--card-bg) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* --- 2. GLOBAL RESET --- */
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* --- 3. NAVBAR & MOBILE MENU --- */
+.navbar {
+    background-color: rgba(10, 10, 10, 0.8) !important;
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 0;
+}
+
+.nav-link {
+    color: var(--text-muted) !important;
+    transition: color 0.3s ease;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    color: var(--accent) !important;
+}
+
+/* Hamburger Icon Styling */
+.navbar-toggler {
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1); /* Turns black icon to white */
+}
+
+/* --- 4. BLOG INDEX: Post Preview Cards --- */
+a.post-preview-card {
+    display: block;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    border-radius: 16px;
+    margin-bottom: 2rem;
+    text-decoration: none !important; /* Forces underline away */
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    color: inherit;
+}
+
+a.post-preview-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent);
+    box-shadow: 0 15px 40px rgba(0, 242, 255, 0.08);
+}
+
+/* Fixes the persistent blue link color/underline inside the card */
+.post-preview-card h2 {
+    color: var(--text-primary);
+    text-decoration: none !important;
+    font-weight: 700;
+    margin: 0.5rem 0;
+    transition: color 0.3s ease;
+}
+
+.post-preview-card:hover h2 {
+    color: var(--accent);
+}
+
+.post-meta {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.post-excerpt {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-top: 10px;
+}
+
+.read-more-btn {
+    color: var(--accent);
+    font-size: 0.9rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    transition: gap 0.3s ease;
+}
+
+.post-preview-card:hover .read-more-btn {
+    gap: 12px;
+}
+
+/* --- 5. BLOG DETAIL: Full Post Styling --- */
+.blog-content {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
+
+.blog-content h1, .blog-content h2, .blog-content h3 {
+    color: var(--text-primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.blog-content strong {
+    color: var(--text-primary);
+}
+
+.blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin: 2.5rem 0;
+    border: 1px solid var(--border-color);
+}
+
+.blog-content blockquote {
+    border-left: 4px solid var(--accent);
+    background: #161616;
+    padding: 1.5rem 2rem;
+    margin: 2.5rem 0;
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    color: #ccc;
+}
+
+/* --- 6. CUSTOM SCROLLBAR --- */
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+    border: 2px solid var(--bg-dark);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+.text-muted, .post-excerpt, .post-meta {
+    color: var(--text-muted) !important;
+}
+
+/* Ensure the blog content isn't too dark */
+.blog-content {
+    color: #ced4da; /* A light, soft grey that is very readable on black */
+}
+
+/* Make sure headers are crisp white */
+h1, h2, h3, .text-white {
+    color: var(--text-primary) !important;
+}

@@ -10,7 +10,9 @@ services:
 
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    env_file:
+      - .env
+    command: gunicorn djangoweb.wsgi:application --bind 0.0.0.0:8000
     volumes:
       - .:/app
     ports:
@@ -21,6 +23,17 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+    expose:
+      - "8000"
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=eyJhIjoiYzU1MTU3YzMyMDMzNWY2ODIzZmJiNWQ0Yzg0YmM1ZTkiLCJ0IjoiNTBjNDZmMzMtMDg1MC00OGNhLThjMDktYjJkM2NhZTdiNzQwIiwicyI6Ik4ySXpZamxtWkRRdFpUazVOaTAwWXpZeExXRmlaamN0TldSbU1XUXlNMk5sTW1JNCJ9  # Paste your token here
+    depends_on:
+      - web
 
 volumes:
   postgres_data:

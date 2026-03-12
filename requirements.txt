@@ -1,3 +1,6 @@
 Django>=5.0
 psycopg2-binary  # For PostgreSQL connection
 gunicorn         # Production-ready server
+whitenoise[brotli]>=6.0.0  # For serving static files in production
+django-cors-headers  # For handling CORS in case of API usage
+django-ckeditor-5  # For rich text editing in the admin interface
