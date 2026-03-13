@@ -148,6 +148,33 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 CKEDITOR_5_CONFIGS = {
     'extends': {
-        'toolbar': ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
-    },
+        'blockToolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3',
+            '|',
+            'bulletedList', 'numberedList',
+            '|',
+            'blockQuote',
+        ],
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'link', 'underline', 'strikethrough',
+            'code', 'codeBlock', '|',  # 'code' is for inline, 'codeBlock' is for the box
+            'bulletedList', 'numberedList', '|',
+            'blockQuote', 'insertTable', '|',
+            'outdent', 'indent', '|',
+            'uploadImage', 'mediaEmbed', '|',
+            'undo', 'redo'
+        ],
+        'codeBlock': {
+            'languages': [
+                { 'language': 'python', 'label': 'Python' },
+                { 'language': 'javascript', 'label': 'JavaScript' },
+                { 'language': 'html', 'label': 'HTML' },
+                { 'language': 'css', 'label': 'CSS' },
+            ]
+        },
+        'image': {
+            'toolbar': ['imageTextAlternative', '|', 'imageStyle:alignLeft', 'imageStyle:alignCenter', 'imageStyle:alignRight'],
+            'styles': ['full', 'alignLeft', 'alignCenter', 'alignRight']
+        }
+    }
 }

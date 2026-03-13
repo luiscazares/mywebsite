@@ -22,10 +22,12 @@
             color: #ced4da;
         }
     </style>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" rel="stylesheet" />
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-black border-bottom border-secondary">
+    <nav class="navbar navbar-expand-lg navbar-light bg-black border-bottom border-secondary">
     <div class="container">
         <a class="navbar-brand" href="/">
             {% if request.resolver_match.url_name != 'home' %}
@@ -56,7 +58,10 @@
     <footer class="text-center py-4 border-top border-secondary mt-5">
         <p class="text-muted">&copy; 2026 Luis C.</p>
     </footer>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
 </body>
 </html>

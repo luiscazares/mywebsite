@@ -1,68 +1,71 @@
 {% extends "portfolio/base.html" %}
 {% load static %}
-
+{% load github_filters %}
 {% block content %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Portfolio</title>
-    <link rel="icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
-    <style>
-        /* Modern Reset */
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            background-color: #121212; /* Sleek dark mode */
-            color: #ffffff;
-            font-family: 'Inter', -apple-system, sans-serif;
-        }
+<style>
+    /* We use min-height and subtract the approximate navbar height (usually ~70-80px) */
+    .hero-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* Subtracting navbar height from the viewport height centers it perfectly */
+        min-height: calc(100vh - 100px); 
+        text-align: center;
+        margin-top: -20px; /* Subtle nudge up to visually account for the text weight below the logo */
+    }
 
-        /* Flexbox Centering Container */
-        .hero-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
+    .centered-svg {
+        width: 250px;
+        height: auto;
+        margin-bottom: 2rem;
+        background: transparent !important;
+        transition: transform 0.3s ease;
+    }
 
-        /* SVG Styling */
-        .centered-svg {
-            width: 250px; /* Adjust size as needed */
-            height: auto;
-            margin-bottom: 2rem;
-            background: transparent !important;
-            transition: transform 0.3s ease;
-        }
+    .centered-svg:hover {
+        transform: scale(1.05);
+    }
 
-        .centered-svg:hover {
-            transform: scale(1.05);
-        }
+    .hero-container h1 {
+        font-weight: 300;
+        letter-spacing: 2px;
+        margin: 0;
+        color: #ffffff;
+    }
 
-        h1 {
-            font-weight: 300;
-            letter-spacing: 2px;
-            margin: 0;
-        }
+    .subtitle {
+        color: #888;
+        margin-top: 10px;
+    }
+</style>
 
-        .subtitle {
-            color: #888;
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
-    <div class="hero-container">
-        <img src="{% static 'portfolio/logo.svg' %}" alt="Logo" class="centered-svg">
-        
-        <h1>Luis Cázares</h1>
-        <p class="subtitle">Developer | Designer | Docker Enthusiast</p>
+<div class="hero-container">
+    <img src="{% static 'portfolio/logo.svg' %}" alt="Logo" class="centered-svg">
+    <h1>Luis Cázares</h1>
+    <p class="subtitle">Developer | Designer | Docker Enthusiast</p>
+    
+    <div class="github-feed mt-5">
+        <h3 class="text-muted mb-4" style="font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase;">
+        Latest Activity
+        </h3>
+    
+        <ul class="list-unstyled">
+            {% for event in events %}
+                <li class="mb-3">
+                    <span class="text-info" style="font-family: 'JetBrains Mono', monospace;">
+                        {{ event.type|clean_event }} 
+                    </span>
+                    <span class="text-white-50">at</span>
+                    <a href="https://github.com/{{ event.repo.name }}" class="text-white text-decoration-none border-bottom border-secondary">
+                        {{ event.repo.name }}
+                    </a>
+                </li>
+            {% empty %}
+                <li class="text-muted italic">No recent activity found.</li>
+            {% endfor %}
+        </ul>
     </div>
 
-</body>
-</html>
+</div>
 {% endblock %}
