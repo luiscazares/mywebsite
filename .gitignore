@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 .venv/
 venv/
+env/
 
 # Django
 db.sqlite3
@@ -11,6 +12,17 @@ media/
 staticfiles/
 .env
 
-# OS
+# Docker & Server
+.dockerignore
+# This ignores the Gunicorn control file and temporary logs
+*.ctl
+*.log
+
+# OS & IDE
 .DS_Store
 Thumbs.db
+.vscode/
+.idea/
+
+# Local static storage (if you ever run collectstatic locally)
+static_root/

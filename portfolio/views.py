@@ -1,7 +1,9 @@
 import requests
 from django.shortcuts import render
+from gallery.models import Project
 
 def home(request):
+    projects = Project.objects.all().order_by('order')
     username = "luiscazares"
     url = f"https://api.github.com/users/{username}/events/public"
 
@@ -14,6 +16,7 @@ def home(request):
         github_data = []
     
     context = {
-        'events': github_data
+        'events': github_data,
+        'projects': projects,
     }
-    return render(request, 'portfolio/home.html')
+    return render(request, 'portfolio/home.html', context)

@@ -1,0 +1,124 @@
+{% extends "portfolio/base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-end mb-5">
+        <div>
+            <h1 class="text-white fw-light mb-0" style="letter-spacing: 4px;">SYSTEM <span class="text-info fw-bold">SENTINEL</span></h1>
+            <p class="text-muted small mb-0">Node Status: <span class="text-success">Online</span></p>
+        </div>
+        <div class="text-end">
+            <span class="badge border border-secondary text-muted px-3 py-2">v 1.0.4</span>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        
+        <div class="col-md-4">
+            <div class="sentinel-card h-100">
+                <div class="d-flex justify-content-between">
+                    <span class="label">CPU Usage</span>
+                    <i class="bi bi-cpu text-info"></i>
+                </div>
+                <h2 class="stat-value">{{ cpu }}%</h2>
+                <div class="custom-progress">
+                    <div class="fill bg-info" style="width: {{ cpu }}%"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="sentinel-card h-100">
+                <div class="d-flex justify-content-between">
+                    <span class="label">Memory</span>
+                    <i class="bi bi-memory text-info"></i>
+                </div>
+                <h2 class="stat-value">{{ ram_percent }}%</h2>
+                <p class="small text-muted">{{ ram_used }}GB / {{ ram_total }}GB</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="sentinel-card h-100">
+                <div class="d-flex justify-content-between">
+                    <span class="label">System Uptime</span>
+                    <i class="bi bi-clock-history text-info"></i>
+                </div>
+                <h2 class="stat-value" style="font-size: 1.8rem;">{{ uptime }}</h2>
+                <p class="small text-info mb-0">{{ os }} Kernel</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="sentinel-card h-100">
+                <div class="d-flex justify-content-between">
+                    <span class="label">User Information</span>
+                    <i class="bi bi-person text-info"></i>
+                </div>
+                <h2 class="stat-value" style="font-size: 1.2rem; word-break: break-all;">
+                    Coming from IP: <span class="text-info">{{ user_ip }}</span>
+                </h2>
+                Using: 
+                <p class="small text-muted" style="font-size: 0.7rem; line-height: 1.2;">
+                    {{ user_browser|truncatechars:60 }}
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="sentinel-card h-100">
+                <div class="d-flex justify-content-between">
+                    <span class="label">Network Traffic</span>
+                    <i class="bi bi-broadcast text-info"></i>
+                </div>
+                <div class="mt-3">
+                    <p class="mb-1 small text-muted">Sent: <span class="text-white">{{ net_sent }} MB</span></p>
+                    <p class="mb-0 small text-muted">Received: <span class="text-white">{{ net_recv }} MB</span></p>
+                </div>
+                <div class="mt-3 small text-info" style="font-family: 'JetBrains Mono';">
+                    Status: ACTIVE
+                </div>
+            </div>
+        </div>
+        
+    </div> </div>
+
+<style>
+    .sentinel-card {
+        background: rgba(20, 20, 20, 0.6);
+        border: 1px solid #333;
+        border-radius: 15px;
+        padding: 2rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .sentinel-card:hover {
+        border-color: var(--info);
+        transform: translateY(-5px);
+    }
+    .label {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.75rem;
+        color: #888;
+    }
+    .stat-value {
+        font-family: 'JetBrains Mono', monospace;
+        color: #fff;
+        margin: 1.5rem 0;
+    }
+    .custom-progress {
+        height: 4px;
+        background: #222;
+        border-radius: 2px;
+        overflow: hidden;
+    }
+    .custom-progress .fill {
+        height: 100%;
+        box-shadow: 0 0 10px var(--info);
+    }
+</style>
+{% endblock %}
