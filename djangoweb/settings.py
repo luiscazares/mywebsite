@@ -40,7 +40,7 @@ ALLOWED_HOSTS = ['luiscazares.com', 'localhost', '127.0.0.1']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # 3. Add CSRF protection for your domain
-CSRF_TRUSTED_ORIGINS = ['http://luiscazares.com']
+CSRF_TRUSTED_ORIGINS = ['https://luiscazares.com', 'http://luiscazares.com']
 
 # Application definition
 
@@ -96,9 +96,9 @@ WSGI_APPLICATION = 'djangoweb.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_NAME', 'postgres'),
-        'USER': os.environ.get('POSTGRES_USER', 'postgres'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'postgres'),
+        'NAME': get_env_variable('POSTGRES_NAME'),
+        'USER': get_env_variable('POSTGRES_USER'),
+        'PASSWORD': get_env_variable('POSTGRES_PASSWORD'),
         'HOST': 'db',  # This matches the service name in docker-compose.yml
         'PORT': 5432,
     }
@@ -147,7 +147,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 WHITENOISE_KEEP_ONLY_HASHED_FILES = True
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = '/app/media/'
 
 CKEDITOR_5_CONFIGS = {
     'extends': {
