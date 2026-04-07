@@ -3,10 +3,8 @@ services:
     image: postgres:15
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env
 
   web:
     build: .
@@ -19,10 +17,6 @@ services:
       - ./media:/app/media
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
     expose:
@@ -34,12 +28,22 @@ services:
     volumes:
       - ../finance-dashboard:/app
 
+  home-tracker:
+    build: ../home-tracker-mcp
+    command: uvicorn api:app --host 0.0.0.0 --port 8002
+    volumes:
+      - ../home-tracker-mcp:/app
+    env_file:
+      - ../home-tracker-mcp/.env
+    depends_on:
+      - db
+
   tunnel:
     image: cloudflare/cloudflared:latest
     restart: unless-stopped
     command: tunnel --no-autoupdate run
-    environment:
-      - TUNNEL_TOKEN=eyJhIjoiYzU1MTU3YzMyMDMzNWY2ODIzZmJiNWQ0Yzg0YmM1ZTkiLCJ0IjoiNTBjNDZmMzMtMDg1MC00OGNhLThjMDktYjJkM2NhZTdiNzQwIiwicyI6Ik4ySXpZamxtWkRRdFpUazVOaTAwWXpZeExXRmlaamN0TldSbU1XUXlNMk5sTW1JNCJ9  # Paste your token here
+    env_file:
+      - .env
     depends_on:
       - web
 
